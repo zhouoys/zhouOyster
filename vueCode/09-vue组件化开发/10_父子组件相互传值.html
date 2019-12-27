@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h1>parentNumber1:{{parentNumber1}}</h1>
+  <h1>parentNumber2:{{parentNumber2}}</h1>
+  <child :parent-number1="parentNumber1" :parent-number2="parentNumber2" @sendnumber1="changeParentNum1" @sendnumber2="changeParentNum2"></child>
+</div>
+<template id="child">
+  <div>
+    <h1>childProp:{{parentNumber1}}</h1>
+    <!--采用v-model绑定-->
+    childData:<input v-model="childNumber1" @input="handle1"/>
+    <h2>childNumber1:{{childNumber1}}</h2>
+    <h1>childProp:{{parentNumber2}}</h1>
+    <!--采用v-bind绑定-->
+    childDate:<input v-bind:value="childNumber2" @input="handle2" />
+    <h2>parentNumber2:{{childNumber2}}</h2>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const child={
+    template:'#child',
+    props:{
+      parentNumber1:Number,
+      parentNumber2:Number
+    },
+    data:function(){
+      return {
+        childNumber1:this.parentNumber1,
+        childNumber2:this.parentNumber2
+      }
+    },
+    methods:{
+      handle1(event){
+        console.log("Number1已经发送了事件：",event)
+        this.$emit("sendnumber1",event.target.value)
+      },
+      handle2(event){
+        console.log("Numbera2已经发送了事件：",event)
+        this.childNumber2 = Number(event.target.value)
+        this.$emit("sendnumber2",event.target.value)
+      }
+    }
+  }
+  new Vue({
+    el: '#app',
+    data: {
+      parentNumber1:11,
+      parentNumber2:22
+    },
+    components:{
+      child:child
+    },
+    methods:{
+      changeParentNum1(param){
+        this.parentNumber1 = Number(param)
+      },
+      changeParentNum2(param){
+        this.parentNumber2 = Number(param)
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

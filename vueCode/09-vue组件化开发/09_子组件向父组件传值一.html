@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <child-component :message="msg" @send="paramHandle"></child-component>
+</div>
+<template id="childComponent">
+  <div>
+    <h4>{{message}}</h4>
+    <button v-for="item in categories" :key="item.code" @click="handleClick(item)" >{{item.name}}</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const childComponent={
+    template:"#childComponent",
+    props:{
+      message:String
+    },
+    data:function(){
+      return {
+        categories:[{
+          name:'服装衣服',
+          code:'1'
+        },{
+          name:'美食集锦',
+          code:'2'
+        },{
+          name:'平板手机',
+          code:'3'
+        },{
+          name:'家用电器',
+          code:'4'
+        },{
+          name:'厨房用品',
+          code:'5'}
+        ]
+      }
+    },
+    methods:{
+      handleClick(param){
+        console.log('子组件中的打印数据',param)
+        this.$emit('send',param)
+      }
+    }
+  }
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    components:{
+      childComponent:childComponent
+    },
+    methods:{
+      paramHandle(param){
+        console.log("父组件中的函数,监听子组件的时间，以及传值", param)
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

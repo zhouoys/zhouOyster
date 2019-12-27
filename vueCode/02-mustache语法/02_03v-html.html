@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  [v-cloak]{
+    display:none
+  }
+</style>
+<body>
+<div id="app">
+  <h4 v-cloak>Funk {{ msg }}</h4>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  setTimeout(function(){
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello world Vue!',
+      }
+    })
+  },5000)
+
+</script>
+
+</body>
+</html>

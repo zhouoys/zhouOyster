@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--  lazy懒同步，input只有在失去焦点或者回车键时才同步-->
+  <input type="text" v-model.lazy="msg">
+  {{msg}}
+<!--  number，v-model无论绑定的是数值还是字符串，都统一转成字符串绑定值,将number将不会绑定成字符串而是统一作为数字处理
+当然，数值被绑定成数值，但是字符串依旧绑定成字符串
+-->
+  <br>
+  <input type="text" v-model.number="count">
+  {{ typeof count}}
+<!--  trim默认绑定时去掉两边的空格-->
+  <br>
+  <input type="text" v-model.trim="str">
+  {{str.length}}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!',
+      count:0,
+      str:'ppp'
+    }
+
+  })
+</script>
+
+</body>
+</html>

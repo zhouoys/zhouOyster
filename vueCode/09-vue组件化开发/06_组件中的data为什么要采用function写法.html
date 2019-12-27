@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <counter></counter>
+  <counter></counter>
+  <counter></counter>
+</div>
+<script src="../js/vue.js"></script>
+<template id="counter">
+  <div>
+    <button @click="add">+</button>
+    <p>总共是:{{count}}</p>
+    <button @click="sub">-</button>
+  </div>
+</template>
+<script>
+  const obj = {
+    count:0
+  }
+  Vue.component("counter",{
+    template:"#counter",
+    //正确写法
+    // data(){
+    //   return {
+    //     count:0
+    //   }
+    // },
+    /**
+     * 采用对比写法,可以看出采用{},每一次实例化组件都调用一次{}，返回一个新的对象的地址引用，
+     * 而采用obj返回，则每一次实例都是返回相同的对象的地址引用，几个组件共用一个对象，所以有干扰
+     */
+    data(){
+      return obj
+    },
+    methods:{
+      add(){
+        this.count++;
+      },
+      sub(){
+        this.count--
+      }
+    }
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    }
+
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <child
+       :chpropa="propA"
+       :chpropb="propB"
+       :chpropc="propC"
+       :chpropd="propD"
+       :chprope="propE"
+       :chpropself="propSelf"
+  ></child>
+</div>
+<template id="child">
+  <div>
+  <p>{{chpropa}}</p>
+  <p>{{chpropb}}</p>
+  <p>{{chpropc}}</p>
+  <p>{{chpropd}}</p>
+  <p>{{chprope}}</p>
+  <p>{{chpropself}}</p>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const child={
+    template:'#child',
+    props:{
+      chpropa:Number,//限制chpropa所传值必须为一个数字类型
+      chpropb:[String,Number],//限制chpropb所传值为字符串或者为数字
+      chpropc:{
+        type:String,//限制chropc为字符串类型
+        required: true //限制chpropc必须传递，默认可以不传
+      },
+      chpropd:{
+        type:Number,//限制chropd为数字类型
+        default: 200 //设置chpropd如果没有上传，默认值为200
+      },
+      chprope:{
+        type:Object,
+        default:function(){
+          return {
+            name: 'zhou'
+          }
+        }
+      },
+      chpropself:{
+        validator:function(value){
+          return value === 'success' //限制这个值必须为success
+        }
+      }
+
+    }
+  }
+  new Vue({
+    el: '#app',
+    data: {
+      propA: 789,
+      propB:'aa',
+      propC:'hello world',
+      propD:123,
+      propE:{'name':'silly','age':78},
+      propSelf:'success'
+    },
+    components:{
+      child:child
+    }
+
+  })
+</script>
+
+</body>
+</html>

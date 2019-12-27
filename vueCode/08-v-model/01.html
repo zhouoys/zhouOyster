@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--v-modle-->
+  <input type="text" v-model="msg">
+  {{msg}}
+  <br>
+  <!--v-bind,input事件-->
+  <input type="text" v-bind:value="name" v-on:input="change">
+  {{name}}
+  <br>
+  <!--v-bind,input事件简写形式-->
+  <input type="text" :value="age" @input="age = $event.target.value">
+  {{age}}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!',
+      name: 'zhou',
+      age: 25
+    },
+    methods:{
+      change(event){
+        console.log(event);
+        this.name = event.target.value
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

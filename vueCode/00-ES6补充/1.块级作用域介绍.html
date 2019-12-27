@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+<script>
+// var 没有块级作用域
+  {
+    var name ="zhou"
+    console.log(name)//zhou
+  }
+  console.log(name)//zhou
+//没有块级作用域的问题：if的块的问题
+var func;
+if(true){
+  lastname ="Smith"
+  func=function(){//该函数用于打印出本块中的name
+    console.log(lastname)
+  }
+  //func()//打印出Smith
+}
+lastname = 'Alice'
+func()//打印出Alice 问题：func()本该打印出if(){}里面的lastname = 'Smith',结果外面被修改之后直接打印出Alice
+//没有块级作用域引起的问题:for
+// var buttons = document.getElementsByTagName('button')
+// for(var i = 0;i<buttons.length;i++){
+//   buttons[i].addEventListener('click',function(){
+//   console.log('点击了第'+i+'个按钮')//点击了第5个按钮
+// })
+// }
+/**
+ * 为什么上面会只打印出点击了第5个按钮呢？ 因为var i没有块级作用域 在log之前i值不停的被修改了
+ */
+var buttons = document.getElementsByTagName('button')
+for(var i = 0;i<buttons.length;i++){
+  (function(index){
+    buttons[index].addEventListener('click',function(){
+      console.log('点击了第'+index+'个按钮')//点击了第5个按钮
+    })
+  })(i)
+}
+/**
+ * 为什么采用立即执行函数就可以呢？可以看到立即执行函数生成了一个函数作用域 类似于
+ * var num;
+ * function func(num){}
+ * function func(){
+ *   var num =====>类似生成了一个函数内的 var num 次时处于函数作用域内
+ * }
+ */
+var num = 12
+  function　abc(num){
+  console.log(num)
+  }
+  num = 13
+  abc(89)//打印出89而不是13
+</script>
+</body>
+</html>

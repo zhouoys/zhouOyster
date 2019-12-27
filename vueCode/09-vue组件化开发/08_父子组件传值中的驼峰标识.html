@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <child :msg="msg" :last-name="lastName" :person-info="personInfo"></child>
+</div>
+<template id="child">
+  <div>
+    <h1>{{msg}}</h1>
+    <h1>{{lastName}}</h1>
+    <h1>{{personInfo}}</h1>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const child={
+    template:'#child',
+    props:{
+      msg:{
+        type:String,
+        default:'hello !!!!!'
+      },
+      lastName:String,
+      personInfo:{
+        type:Object,
+        default:function(){
+          return {name: 'empty', age: 0}
+        }
+      }
+
+    }
+  }
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!',
+      lastName: 'zhou',
+      personInfo:{
+        name:'silly',
+        age: 34
+      }
+    },
+    components:{
+      child:child
+    }
+
+  })
+</script>
+</body>
+</html>

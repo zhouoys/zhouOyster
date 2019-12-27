@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+{{ fullName }}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName:'smith',
+      lastName: 'alice'
+    },
+    computed:{
+      //最终简写形式
+      // fullName:function(){
+      //   return this.firstName + ' ' +this.lastName
+      // }
+      //getter只读形式
+      // fullName:{
+      //   get:function(){
+      //     return this.firstName + ' '+this.lastName
+      //   }
+      // }
+      //getter和setter形式
+      fullName:{
+        get:function(){
+          return this.firstName + ' '+ this.lastName
+        },
+        set:function(data){
+          console.log('-----', data)
+          const datas = data.split(' ')
+          this.firstName = datas[0]
+          this.lastName = datas[1]
+        }
+      }
+
+    }
+
+
+  })
+</script>
+
+</body>
+</html>

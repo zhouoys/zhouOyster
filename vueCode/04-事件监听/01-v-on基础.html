@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+{{ count }}
+<!--  语法糖，绑定一个表达式-->
+  <button @click="count++">增加</button>
+<!--  完整写法，绑定一个表达式-->
+  <button v-on:click="count--">减少</button>
+<!--  绑定一个函数-->
+  <button v-on:click="reset">归零</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      count: 0
+    },
+  methods:{
+      reset() {
+        this.count=0
+    }
+  }
+  })
+</script>
+
+</body>
+</html>

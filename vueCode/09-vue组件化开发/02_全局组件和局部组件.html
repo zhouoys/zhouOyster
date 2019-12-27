@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app_1">
+  <component></component>
+</div>
+<div id="app_2">
+  <component></component>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const vueComponent = Vue.extend({
+    template:`<div><h1>这是一个组件</h1>` +
+             `<p>I am shine</p></div>`
+  })
+  // 全局组件
+  // Vue.component('my-component',vueComponent)
+  new Vue({
+    el: '#app_1',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    components:{
+      component: vueComponent // 局部组件，只能在#app_1中挂载使用，注：不能采用my-component,js中不能采用'-'作为变量字符
+  }
+
+  })
+
+  new Vue({
+    el: '#app_2',
+    data: {
+      msg: 'hello world Vue!'
+    }
+
+  })
+</script>
+
+</body>
+</html>

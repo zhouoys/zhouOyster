@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+  .active{
+    color:red;
+  }
+  .line{
+    font-family:"微软雅黑";
+    font-weight:bold;
+  }
+</style>
+<body>
+<div id="app">
+  {{ msg}}
+<h1 class="title" v-bind:class="{active:isActive,line:isLine}">I am Example</h1>
+  <buttom @click="handleColor">控制颜色</buttom>
+  <buttom @click="handleWeight">控制粗细</buttom>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!',
+      isActive: true,
+      isLine: true
+    },
+    methods:{
+      handleWeight(){
+        this.isLine = !this.isLine
+      },
+      handleColor(){
+        this.isActive = !this.isActive
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

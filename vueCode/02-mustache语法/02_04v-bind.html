@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+<!--  测试v-bind属性绑定-->
+</head>
+<body>
+<div id="app">
+  {{ msg}}
+  <img v-bind:src="ImgUrl"/>
+  <a :href="link">百度一下</a>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!',
+      ImgUrl: '../Image/01.jpg',
+      link:'www.baidu.com'
+    }
+  })
+</script>
+
+</body>
+</html>

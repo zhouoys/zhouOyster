@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h4>统计数字 {{data}}</h4>
+  <!--    <button v-on:click="data++">+</button>-->
+  <!--    <button v-on:click = "data&#45;&#45;">-</button>-->
+  <!--    <button @click="data++">+</button>-->
+  <!--    <button @click="data&#45;&#45;">-</button>-->
+  <button @click="increments">+</button>
+  <button @click="subtract">-</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      data: 0
+    },
+    methods: {
+      increments:function() {
+        console.log("新增")
+        this.data++
+      },
+      subtract:function(){
+        console.log("删除")
+        this.data--
+      }
+    }
+  })
+</script>
+</body>
+</html>

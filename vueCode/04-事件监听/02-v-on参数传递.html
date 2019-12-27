@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--  方法一：
+1,，方法本身可以不携带参数，此时括号可以省略，可写可不写。
+2，但是注意，如果不写参数的话，所有的事件都是自动具有一个event对象的，如果,在函数定义的时候，方法里面写了形参，
+此时会把event输入到形参中。如果没有写形参，则不会传递event对象。
+如果加了括号，括号内没有携带参数，则不会发生event传递到函数中的问题
+一般情况下，默认传递event对象的只有一种情况：
+就是方法本身不携带参数，而且是没有加小括号的的情况下，此时函数的定义中确实是需要一个参数，此时传递过去的就是event事件对象-->
+<!--  方法二:如何携带一个event对象以及一些自定义的参数
+所有的
+-->
+  <button @click="button10">button1-0</button>
+  <button @click="button11()">button1-1</button>
+  <button @click="button12">button1-2</button>
+  <button @click="button13(789,$event)">button1-3</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    methods:{
+      button10(param){
+        console.log('button1-0',param)//param为event事件对象
+      },
+      button11(param){
+        console.log('button1-1',param)//param为undefined
+      },
+      button12(){
+        console.log('button1-1',$event)//param为ReferenceError: $event is not defined
+      },
+      button13(param,event){
+        console.log(param, event);//789 MouseEvent
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<h4>{{ msg }} {{name}}</h4>
+  <h4>{{msg + ''+ name}}</h4>
+  <h4>{{getFullInfo()}}</h4>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!',
+      name: 'zhhhh'
+    },
+    methods:{
+      getFullInfo(){
+        return this.msg + ''+this.name
+      }
+    }
+  })
+</script>
+</body>
+</html>

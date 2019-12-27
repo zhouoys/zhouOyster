@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <father></father>
+  <son></son>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+ const son=Vue.extend({
+   template:`
+   <div>
+   <h1>这是一个子组件</h1>
+   <p>这是子组件的内容</p>
+   </div>
+   `
+ })
+ const father = Vue.extend({
+   template:`
+   <div>
+   <h1>这是一个父组件</h1>
+   <p>这是父组件的内容</p>
+   <son></son>
+</div>`,
+   components:{
+     son:son
+   }
+ })
+  //root组件
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+  //  定义局部组件
+    components:{
+      father:father,
+    //  如果想在root组件上直接使用son组件，必须要在此处注册
+      son:son
+    }
+
+  })
+</script>
+
+</body>
+</html>

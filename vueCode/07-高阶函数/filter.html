@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let arr=[1,2,5,78,45,78,45,33,56,90,89]
+  let newArr = arr.filter(function(item){
+      return item > 50
+  })
+  console.log(newArr)//[78, 78, 56, 90, 89]
+  let newArr2 = newArr.map(function(item){
+    return item*2
+  })
+  console.log(newArr2)//[156, 156, 112, 180, 178]
+  let total = newArr2.reduce(function(preValue,item){
+    return preValue + item
+  },0)
+  console.log(total)  //782
+</script>
+</body>
+</html>

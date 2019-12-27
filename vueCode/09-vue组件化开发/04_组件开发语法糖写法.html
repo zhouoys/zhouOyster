@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <global></global>
+  <part></part>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  // 全局组件语法糖
+  Vue.component("global",{
+    template:`
+    <div>
+    <h1>这是一个全局组件</h1>
+    <p>这是全局组件中的内容</p>
+    </div>
+`
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    // 局部组件语法糖 与全局组件有所区别
+    components:{
+      "part":{
+        template:`<div>
+                  <h1>这是一个局部组件</h1>
+                  <p>这是局部组件的内容</p>
+                  </div>
+                  `
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <method1></method1>
+  <method2></method2>
+</div>
+<script src="../js/vue.js"></script>
+<!--模板的分离写法一，采用script标签 注意type类型应该为text\x-template-->
+<script type="text/x-template" id="script">
+<div>
+  <h1>这是一个采用script标签的模板</h1>
+  <p>这是模板的内容</p>
+</div>
+</script>
+<!--模板的分离写法二，采用template标签，注意需要添加id用于绑定-->
+<template id="template">
+  <div>
+    <h1>这是一个采用template标签的模板</h1>
+    <p>这是模板的内容</p>
+  </div>
+</template>
+
+<script>
+  Vue.component("method1",{
+    template:"#script"
+  })
+  Vue.component("method2",{
+    template:"#template"
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    }
+
+  })
+</script>
+
+</body>
+</html>

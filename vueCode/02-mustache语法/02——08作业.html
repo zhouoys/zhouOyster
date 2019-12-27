@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+<!--
+需求：点击对应的电影，自动更换颜色
+-->
+</head>
+<style>
+  .active{
+    color:red;
+    font-size:18px;
+    font-weight:bold;
+  }
+</style>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in movies" v-bind:class="{active:count === index}" @click="change(index)">{{ index }} -- {{item}}</li>
+  </ul>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+     movies: ['火影忍者', '海贼王' , '妖精的尾巴', '游戏王'],
+     count:0
+    },
+    methods: {
+      change:function(index){
+        this.count = index
+      }
+
+    }
+
+  })
+</script>
+
+</body>
+</html>

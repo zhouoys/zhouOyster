@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+{{ msg }}
+<!--  3.组件的使用-->
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  //  1.组件的创建
+  const vueComponent = Vue.extend({
+        template:`<div><h1>这是一个组件</h1>` +
+                `<h2>这是组件的二级标题</h2>` +
+                `<h3>这是组件的三级标题</h3>` +
+                `</div>`
+  })
+  // 2.组件的注册
+  Vue.component('my-component',vueComponent)
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    }
+
+  })
+</script>
+
+</body>
+</html>
