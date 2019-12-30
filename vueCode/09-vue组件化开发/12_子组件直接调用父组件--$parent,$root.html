@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="father">
+  <son></son>
+</div>
+<!--孙子-->
+<template id="grandson">
+  <div>
+    <h1>This is grandson </h1>
+    <button @click="getGrandsonParent"> 获取孙子的父级</button>
+    <button @click="getGrandsonRoot"> 获取孙子的根级</button>
+  </div>
+</template>
+<!--儿子-->
+<template id="son">
+  <div>
+    <h1>This is son </h1>
+    <button  @click="getSonParent">获取儿子的父级</button>
+    <button  @click="getSonRoot">获取儿子的根级</button>
+    <grandson></grandson>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const grandson={
+    template:"#grandson",
+    data:function(){
+      return {
+        msg:'I am Grandson'
+      }
+    },
+    methods:{
+      getGrandsonParent(){
+        console.log(this.$parent);
+        console.log(this.$parent.msg)
+      },
+      getGrandsonRoot(){
+        console.log(this.$root);
+        console.log(this.$root.msg)
+      }
+    }
+  }
+  const son={
+    template:"#son",
+    data:function(){
+      return {
+        msg:'I am Son'
+      }
+    },
+    methods:{
+      getSonParent(){
+        console.log(this.$parent)
+        console.log(this.$parent.msg)
+      },
+      getSonRoot(){
+        console.log(this.$root)
+        console.log(this.$root.msg)
+      }
+    },
+    components:{
+      grandson:grandson
+    }
+  }
+  new Vue({
+    el: '#father',
+    data: {
+      msg: 'I am Father'
+    },
+    methods:{},
+    components:{
+      son:son
+    }
+
+  })
+</script>
+
+</body>
+</html>

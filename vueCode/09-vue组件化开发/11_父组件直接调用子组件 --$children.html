@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <child-first></child-first>
+  <child-second></child-second>
+  <button @click="showChildFirst">获取childFirst的属性和方法</button>
+  <button @click="showChildSecond">获取childFirst的属性和方法</button>
+</div>
+<template id="childFirst">
+  <h1>This is ChildFirst </h1>
+</template>
+<template id="childSecond">
+  <h1>This is ChildSecond </h1>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const childFirst={
+    template:"#childFirst",
+    data:function(){
+      return {
+        msg:'This is childFirst message'
+      }
+    },
+    methods:{
+      showFirst(){
+        console.log("this is showFirst")
+      }
+    }
+  }
+  const childSecond={
+    template:"#childSecond",
+    data:function(){
+      return {
+        msg:'This is childSecond message'
+      }
+    },
+    methods:{
+      showSecond(param){
+        console.log("this is childSecond",param)
+      }
+    }
+  }
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    methods:{
+      showChildFirst(){
+        console.log(this.$children[0].msg)
+        this.$children[0].showFirst()
+      },
+      showChildSecond(){
+        console.log(this.$children[1].msg)
+        this.$children[1].showSecond('这是父组件调用子组件函数时传递过去的参数')
+      }
+    },
+    components:{
+      childFirst,
+      childSecond
+    }
+  })
+</script>
+</body>
+</html>
