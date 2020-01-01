@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <slot-example></slot-example>
+  <slot-example>
+    <div>我是不具名插槽传入值</div>
+    <div slot="slot1">我是具名插槽传入的值一</div>
+    <h1 slot="slot2">我是具名插槽传入的值二</h1>
+  </slot-example>
+</div>
+<template id="slot">
+  <div>
+    <h1>我是子组件</h1>
+    <slot name="slot1"><h1>默认插槽一</h1></slot>
+    <slot name="slot2"><h1>默认插槽二</h1></slot>
+    <slot name="slot3"><h1>默认插槽三</h1></slot>
+    <slot><span>我是不具名插槽默认值</span></slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    components:{
+      slotExample:{
+        template:'#slot'
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

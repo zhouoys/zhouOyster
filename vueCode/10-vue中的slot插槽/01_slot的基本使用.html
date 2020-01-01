@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <slot-example></slot-example>
+  <slot-example><span>我是父组件传入子组件的插槽</span></slot-example>
+  <slot-example>
+    <h2>我是父组件传入多个值一</h2>
+    <h3>我是父组件传入值一</h3>
+    <div>我是父组件传入值一</div>
+    <span>我是父组件传入值一</span>
+  </slot-example>
+</div>
+<template id="slot">
+  <div>
+    <h1>我是子组件</h1>
+    <!--给子组件定义一个插槽-->
+    <!--    <slot></slot>-->
+    <!--给子组件定义一个插槽,并且设置默认插槽-->
+    <slot><button>我是默认插槽</button></slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    components:{
+      slotExample:{
+        template:'#slot'
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>
