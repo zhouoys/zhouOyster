@@ -1,0 +1,9 @@
+body{
+  background: red;
+}
+.img-1{
+  background:url("../img/xing.jpg");
+}
+.img-2{
+  background: url("../img/xue.jpeg");
+}

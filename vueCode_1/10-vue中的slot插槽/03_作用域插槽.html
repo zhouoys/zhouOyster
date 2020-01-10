@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <child></child>
+<!--  组件内包含template vue2.5.x以下-->
+  <child>
+    <template slot-scope="slot">
+      <h1>我是父组件传递到子组件的插槽一</h1>
+      <span v-for="book in slot.data">{{book}}</span>
+    </template>
+  </child>
+<!--  组件内不必包含template vue2.5.X以上-->
+  <child>
+    <div slot-scope="slot">
+      <h1>我是父组件传递到子组件的插槽二</h1>
+      <span>{{slot.data.join('-')}}</span>
+    </div>
+  </child>
+</div>
+<template id="child">
+  <div>
+    <slot :data="bookList">
+      <ul v-for="book in bookList">
+        <li>{{book}}</li>
+      </ul>
+    </slot>
+    <slot name="red">组件默认插槽</slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello world Vue!'
+    },
+    components:{
+      child:{
+        template:'#child',
+        data(){
+          return {
+            bookList:['呼啸山庄','哈利波特' ,'红楼梦','双层记','雾都孤儿','草房子']
+          }
+        }
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>
