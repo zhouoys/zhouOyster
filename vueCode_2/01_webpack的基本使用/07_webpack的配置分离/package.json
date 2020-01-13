@@ -1,0 +1,26 @@
+{
+  "name": "ultimatevue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./build/pro.js",
+    "dev": "webpack-dev-server --open --config ./build/dev.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.6.11",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "css-loader": "^3.4.2",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.1.2",
+    "vue-loader": "^13.7.3",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.2.2"
+  }
+}
